@@ -19,10 +19,13 @@ function runCasper(scriptName, callback) {
   var childArgs = [
     path.join(__dirname, scriptName)
   ];
+  var childOptions = {
+    'PHANTOMJS_EXECUTABLE': getPhantomFileName()
+  };
 
-  console.log('Calling casperJS: ', casperPath, childArgs);
+  console.log('Calling casperJS: ', casperPath, childArgs, childOptions);
 
-  var ps = childProcess.execFile(casperPath, childArgs);
+  var ps = childProcess.execFile(casperPath, childArgs, childOptions);
 
   ps.stdout.on('data', function (data) {
     console.log(data);
