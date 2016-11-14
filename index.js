@@ -22,6 +22,8 @@ function runCasper(scriptName, callback) {
     var childOptions = {
         'PHANTOMJS_EXECUTABLE': getPhantomFileName()
     };
+    
+    process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'];
 
     console.log('Calling casperJS: ', casperPath, childArgs, childOptions);
 
