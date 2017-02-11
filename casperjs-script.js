@@ -1,5 +1,12 @@
-// Simple Javascript example
+// Simple Javascript example..
 var casper = require('casper').create();
+var utils = require('utils');
+
+utils.dump(casper.cli.get('email'))
+utils.dump(casper.cli.get('password'));
+// OR
+// utils.dump(casper.cli.raw.get('email'));
+// utils.dump(casper.cli.raw.get('password'));
 
 var url1 = 'http://casperjs.org/';
 var url2 = 'http://phantomjs.org';
@@ -14,4 +21,8 @@ casper.thenOpen(url2, function() {
     this.echo('Second Page: ' + this.getTitle());
 });
 
-casper.run();
+casper.run(function() {
+    this.exit(); // close the casper instance.
+});
+
+// follow the casperjs documentation for more: http://docs.casperjs.org/en/latest/

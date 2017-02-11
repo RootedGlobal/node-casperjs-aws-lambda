@@ -16,8 +16,12 @@ function runCasper(scriptName, callback) {
     var casperPath = path.join(__dirname, 'node_modules', 'casperjs', 'bin', 'casperjs');
     var outputData = [];
     var error = null;
+    
     var childArgs = [
-        path.join(__dirname, scriptName)
+        path.join(__dirname, scriptName),
+        /* send data via parameters to casper script: http://docs.casperjs.org/en/latest/cli.html#raw-parameter-values */
+        '--email=hello@hello.com',
+        '--password=12345'
     ];
     var childOptions = {
         'PHANTOMJS_EXECUTABLE': getPhantomFileName()
