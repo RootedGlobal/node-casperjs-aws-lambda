@@ -7,7 +7,7 @@
         "type": "git",
         "url": "git://github.com/narainsagar/node-casperjs-aws-lambda.git"
     },
-    "author": "Narain Sagar",
+    "author": "Narain Sagar <narainmenghwar@gmail.com>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/narainsagar/node-casperjs-aws-lambda/issues"
