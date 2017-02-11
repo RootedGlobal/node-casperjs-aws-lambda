@@ -51,7 +51,7 @@ $ npm run deploy
 ## Contributing
 
 - Star our [GitHub Repository](https://github.com/narainsagar/node-casperjs-aws-lambda) ⭐
-- Fork our [GitHub Repository](https://github.com/narainsagar/node-casperjs-aws-lambda#fork-destination-box) 👈
+- Fork our [GitHub Repository](https://github.com/narainsagar/node-casperjs-aws-lambda) 👈
 - Create [pull requests](https://github.com/narainsagar/node-casperjs-aws-lambda/pulls), [submit bugs](https://github.com/narainsagar/node-casperjs-aws-lambda/issues), suggest new features or documentation updates 🔧
 
 ## About Me
