@@ -8,7 +8,7 @@ module.exports = {
         if (fs.existsSync(phantomPath)) {
             return phantomPath;
         }
-        return path.join(__dirname, 'bin', 'phantomjs');
+        return path.join(__dirname, '..', 'bin', 'phantomjs');
     },
 
     // Get the path to the casperjs executable

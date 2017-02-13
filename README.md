@@ -4,6 +4,33 @@ A [CasperJS](http://casperjs.org/) node.js app for [Amazon Lambda](http://aws.am
 Based on [node-lambda-template](https://github.com/rebelmail/node-lambda-template) using [node-lambda](https://github.com/rebelmail/node-lambda).
 The app includes a [PhantomJS](http://phantomjs.org/) binary (i.e., in root directory named: `phantomjs`) compiled for AWS Linux (https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2).
 
+## Codebase / Directory Structure
+
+This will describe the app directory structure:
+
+```
+- app-name                        # project root directory
+    - node_modules                # project dependencies directory
+        - ...
+    - bin                         # bin directory
+        - phantomjs               # phantomjs binary executable
+    - src                         # source files
+        - scripts                 # directory contains all casperjs scrapping scripts.
+            - sample-script.js    # sample casperjs script
+            - ...
+        - runner.js               # dynamic casperjs script runner
+        - utils.js                # utility functions inside here.
+    - test                        # directory contains test files
+        - basic.js                # sample basic test
+        - ...
+    - .env                        # it is where you place your AWS deployment configuration
+    - .gitignore                  # exclude files/etc to be tracked & pushed on git (i.e., local configuration, credentials, dependencies, etc.)
+    - deploy.env                  # it has the same format as `.env`, but is used for holding any environment/config variables that you need to be deployed with your code to Lambda but you don't want in version control (e.g. DB connection info)
+    - event.json                  # it is where you mock your event
+    - index.js                    # app main entry point
+    - package.json                # project details (i.e., version, author info, dependencies, etc.)
+    - README.md                   # project documentation guide.
+```
 ## Setup / Install
 
 Clone the project:
@@ -24,7 +51,26 @@ After installing use the following `npm` commands as described below. They're on
 
 **There are the 3 available commands:**
 
-Run the setup command to generate the environment file with the configuration used for the Amazon Lambda function. Edit the resulting `.env.` file with your custom settings.
+Run the setup command to generate the environment file with the configuration used for the Amazon Lambda function. Edit the resulting `.env` file with your custom settings.
+
+For this you need to have aws account and fill out confuguration in `.env` file:
+
+```shell
+AWS_ENVIRONMENT=development
+AWS_ACCESS_KEY_ID=your_key
+AWS_SECRET_ACCESS_KEY=your_secret
+AWS_ROLE_ARN=your_amazon_role
+AWS_REGION=us-east-1
+AWS_FUNCTION_NAME=
+AWS_HANDLER=index.handler
+AWS_MODE=event
+.....
+.....
+AWS_RUNTIME=nodejs
+
+....
+```
+
 ```shell
 $ ./node_modules/.bin/node-lambda setup
 # OR
@@ -45,8 +91,8 @@ $ ./node_modules/.bin/node-lambda deploy
 $ npm run deploy
 ```
 
+For more about commands visit `node_lambda` [repository here](https://github.com/motdotla/node-lambda)
 > **Note:** npm version 2.x or newer required to pass arguments to the scripts using `-- args`
-
 
 ## Contributing
 
