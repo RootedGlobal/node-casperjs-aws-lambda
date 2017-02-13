@@ -5,7 +5,7 @@ var utils = require('./utils');
 
 // CasperJS script runner.
 module.exports = function (fileName, args, callback) {
-    var casperPath = utils.getCasperPath(); // path.join(__dirname, 'node_modules', 'casperjs', 'bin', 'casperjs');
+    var casperPath = utils.getCasperPath();
     var phantomOptions = {
         'PHANTOMJS_EXECUTABLE': utils.getPhantomPath()
     };
@@ -22,7 +22,7 @@ module.exports = function (fileName, args, callback) {
     ];
 
     if (args && typeof args === 'object') {
-        /* attach data via parameters to casper script: http://docs.casperjs.org/en/latest/cli.html#raw-parameter-values */
+        /* append data to options via parameters so that it can be sent over to casper script: http://docs.casperjs.org/en/latest/cli.html#raw-parameter-values */
         for (var key in args) {
             // format to: '--key=value'
             options.push('--' + key + '=' + args[key]);
