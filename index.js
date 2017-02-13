@@ -1,56 +1,23 @@
-var path = require('path'),
-    fs = require('fs'),
-    childProcess = require('child_process');
+var runner = require('./src/runner');
 
-// Get the path to the phantomjs application
-function getPhantomFileName() {
-    var phantomPath = path.join(__dirname, 'node_modules', 'phantomjs', 'bin', 'phantomjs');
-    if ( /* process.env.DEBUG && */ fs.existsSync(phantomPath)) {
-        return phantomPath;
-    }
-    return path.join(__dirname, 'phantomjs');
-}
-
-// Call the casperJS script
-function runCasper(scriptName, callback) {
-    var casperPath = path.join(__dirname, 'node_modules', 'casperjs', 'bin', 'casperjs');
-    var outputData = [];
-    var error = null;
-    
-    var childArgs = [
-        path.join(__dirname, scriptName),
-        /* send data via parameters to casper script: http://docs.casperjs.org/en/latest/cli.html#raw-parameter-values */
-        '--email=hello@hello.com',
-        '--password=12345'
-    ];
-    var childOptions = {
-        'PHANTOMJS_EXECUTABLE': getPhantomFileName()
+// App entry Point
+exports.handler = function (event, context) {
+    console.log('Running index.handler');
+    console.log('==================================================');
+    console.log('event', event);
+    console.log('==================================================');
+    var filename = 'sample-script.js'; // file should be placed inside /src/scripts/
+    var args = { // attach & pass this data to sample-script.js
+        'email': 'hello@hello.com',
+        'password': '12345',
+        // etc..
     };
-    
-    process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'];
-
-    console.log('Calling casperJS: ', casperPath, childArgs, childOptions);
-
-    var ps = childProcess.execFile(casperPath, childArgs, childOptions);
-
-    ps.stdout.on('data', function(data) {
-        console.log(data);
-        outputData.push(data);
+    console.log('Executing file named: ', filename, 'with parameters:', JSON.stringify(args));
+    console.log('==================================================');
+    // Execute the casperJS script and exit.
+    runner(filename, args, function(err, data) {
+        console.log('==================================================');
+        console.log('Stopping index.handler');
+        context.done();
     });
-
-    ps.stderr.on('data', function(data) {
-        console.log('casper error  ---:> ' + data);
-        error = new Error(data);
-    });
-
-    ps.on('exit', function(code) {
-        console.log('child process exited with code ' + code);
-        callback(error, outputData);
-    });
-}
-
-// Entry Point
-exports.handler = function(event, context) {
-    // Execute the casperJS call and exit
-    runCasper('casperjs-script.js', context.done);
 };
