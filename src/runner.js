@@ -17,31 +17,40 @@ module.exports = function (fileName, args, callback) {
     if (!fs.existsSync(filePath)) {
         throw new Error('File: ' + fileName + ' not exists on directory path:', filePath);
     }
+
     var options = [
         filePath
     ];
 
     if (args && typeof args === 'object') {
-        /* append data to options via parameters so that it can be sent over to casper script: http://docs.casperjs.org/en/latest/cli.html#raw-parameter-values */
+        /* append args to options via parameters so that it can be sent over to casper script: http://docs.casperjs.org/en/latest/cli.html#raw-parameter-values */
         for (var key in args) {
             // format to: '--key=value'
             options.push('--' + key + '=' + args[key]);
 	    }
     }
 
-    process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'];
-
+    console.log('PATH', process.env['PATH']);
+    // Set the path as described here: https://aws.amazon.com/blogs/compute/running-executables-in-aws-lambda/
+    if (process.env['LAMBDA_TASK_ROOT']) {
+        process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'];
+    }
+    console.log('PATH', process.env['PATH']);
     console.log('Calling casperJS: ', casperPath, options, phantomOptions);
 
-    var ps = childProcess.execFile(casperPath, options, phantomOptions)
+    // Launch the child process
+    var ps = childProcess.execFile(casperPath, options, phantomOptions);
+    
     ps.stdout.on('data', function(data) {
         console.log(data);
         outputData.push(data);
     });
+
     ps.stderr.on('data', function(err) {
-        console.error('casper error  ---:> ' + err);
+        console.error('error: ' + err);
         error = err;
     });
+
     ps.on('exit', function(code) {
         console.log('child process exited with code ' + code);
         callback(error, outputData);
