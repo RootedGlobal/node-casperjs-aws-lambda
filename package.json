@@ -21,9 +21,9 @@
         "phantomjs": "^1.9.17"
     },
     "scripts": {
-        "setup": "node-lambda setup",
-        "start": "node-lambda run",
-        "deploy": "node-lambda deploy",
+        "setup": "./node_modules/.bin/node-lambda setup",
+        "start": "./node_modules/.bin/node-lambda run",
+        "deploy": "./node_modules/.bin/node-lambda deploy",
         "test": "mocha test/*"
     },
     "keywords": [
