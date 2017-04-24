@@ -79,21 +79,26 @@ AWS_RUNTIME=nodejs
 ```shell
 $ ./node_modules/.bin/node-lambda setup
 # OR
-$ npm run setup
+$ npm run setup # yarn run setup
 ```
 
 To run the function locally execute the following command.
 ```shell
 $ ./node_modules/.bin/node-lambda run
 # OR
-$ npm run start
+$ npm run start # yarn run start
 ```
 
 Run the following command to deploy the app to Amazon Lambda. 
 ```shell
 $ ./node_modules/.bin/node-lambda deploy
 # OR
-$ npm run deploy
+$ npm run deploy # yarn run deploy
+```
+
+For running tests:
+```shell
+$ npm run test # yarn test
 ```
 
 For more about commands visit `node_lambda` [repository here](https://github.com/motdotla/node-lambda)
