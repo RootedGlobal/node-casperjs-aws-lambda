@@ -30,10 +30,11 @@ module.exports = function (fileName, args, callback) {
 	    }
     }
 
-    console.log('PATH', process.env['PATH']);
     // Set the path as described here: https://aws.amazon.com/blogs/compute/running-executables-in-aws-lambda/
     if (process.env['LAMBDA_TASK_ROOT']) {
-        process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'];
+        // adding ':/var/task/bin' in path fixes the issue: "Fatal: [Errno 2] No such file or directory; did you install phantomjs?"
+        // reference: https://github.com/narainsagar/node-casperjs-aws-lambda/issues/3
+        process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'] + ':/var/task/bin';
     }
     console.log('PATH', process.env['PATH']);
     console.log('Calling casperJS: ', casperPath, options, phantomOptions);
