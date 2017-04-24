@@ -1,6 +1,6 @@
 {
     "name": "node-casperjs-aws-lambda",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "The bare minimum for a casperjs/phantomjs app running on Amazon Lambda.",
     "main": "index.js",
     "repository": {
