@@ -2,7 +2,9 @@
 
 A [CasperJS](http://casperjs.org/) node.js app for [Amazon Lambda](http://aws.amazon.com/lambda/).
 Based on [node-lambda-template](https://github.com/rebelmail/node-lambda-template) using [node-lambda](https://github.com/rebelmail/node-lambda).
-The app includes a [PhantomJS](http://phantomjs.org/) binary (i.e., in root directory named: `phantomjs`) compiled for AWS Linux (https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2).
+The app includes a [PhantomJS](http://phantomjs.org/) binary (i.e., in the `/bin/` directory named: `phantomjs`) compiled for AWS Linux (https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2).
+
+**Note:** If you want to use different PhantomJS binary in your project, then you will be need to download a latest binary from [here](https://bitbucket.org/ariya/phantomjs/downloads/) and replace it with `/bin/phantomjs` (i.e., Make sure you keep the name as is for now).
 
 ## Codebase / Directory Structure
 
@@ -48,7 +50,7 @@ $ git clone https://github.com/narainsagar/node-casperjs-aws-lambda.git
 Install dependencies using npm. It'll install the AWS SDK as well as PhantomJS on the development machine.
 
 ```shell
-$ npm install # OR $ npm i
+$ npm install # yarn
 ```
 
 ## Usage
@@ -79,21 +81,21 @@ AWS_RUNTIME=nodejs
 ```shell
 $ ./node_modules/.bin/node-lambda setup
 # OR
-$ npm run setup # yarn run setup
+$ npm run setup # yarn setup
 ```
 
 To run the function locally execute the following command.
 ```shell
 $ ./node_modules/.bin/node-lambda run
 # OR
-$ npm run start # yarn run start
+$ npm run start # yarn start
 ```
 
 Run the following command to deploy the app to Amazon Lambda. 
 ```shell
 $ ./node_modules/.bin/node-lambda deploy
 # OR
-$ npm run deploy # yarn run deploy
+$ npm run deploy # yarn deploy
 ```
 
 For running tests:
