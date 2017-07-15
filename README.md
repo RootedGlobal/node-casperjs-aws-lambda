@@ -118,7 +118,13 @@ For more about commands visit `node_lambda` [repository here](https://github.com
 
 ## Follow Me 👍
 
-[Website](http://narainsagar.com/) | [Twitter](https://twitter.com/narainsagar) | [LinkedIn](https://www.linkedin.com/pk/narainsagar) |  [Facebook](https://facebook.com/NarainSagarPage) | [Github](https://github.com/narainsagar) | [Stack Overflow](www.stackoverflow.com/users/5228251/narainsagar)
+[Medium](http://blog.narainsagar.com/) | 
+[Website](http://narainsagar.com/) | 
+[Twitter](https://twitter.com/narainsagar) | 
+[LinkedIn](https://www.linkedin.com/pk/narainsagar) | 
+[Facebook](https://facebook.com/NarainSagarPage) | 
+[Github](https://github.com/narainsagar) | 
+[Stack Overflow](www.stackoverflow.com/users/5228251/narainsagar)
 
 ## License
 
