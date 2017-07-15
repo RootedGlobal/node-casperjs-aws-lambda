@@ -59,7 +59,13 @@ After installing use the following `npm` commands as described below. They're on
 
 **There are the 3 available commands:**
 
-Run the setup command to generate the environment file with the configuration used for the Amazon Lambda function. Edit the resulting `.env` file with your custom settings.
+- setup: `$ npm run setup`
+- start: `$ npm run start`
+- deploy: `$ npm run deploy`
+
+> Run the `$ npm run setup` command to generate the `.env` environment file with the default configuration used for the Amazon Lambda function.
+
+You need to edit the resulting `.env` file with your custom settings.
 
 For this you need to have aws account and fill out confuguration in `.env` file:
 
@@ -77,21 +83,27 @@ AWS_MODE=event
 AWS_RUNTIME=nodejs
 ....
 ```
+FYI: You can also specify `nodejs` version for `AWS_RUNTIME` config option. i.e.,
 
+```shell
+AWS_RUNTIME=nodejs6.10
+```
+
+To generate `.env` environment file run the following command:
 ```shell
 $ ./node_modules/.bin/node-lambda setup
 # OR
 $ npm run setup # yarn setup
 ```
 
-To run the function locally execute the following command.
+To run the function locally execute the following command:
 ```shell
 $ ./node_modules/.bin/node-lambda run
 # OR
 $ npm run start # yarn start
 ```
 
-Run the following command to deploy the app to Amazon Lambda. 
+Run the following command to deploy the app to Amazon Lambda:
 ```shell
 $ ./node_modules/.bin/node-lambda deploy
 # OR
